@@ -1,0 +1,87 @@
+2024-07-24 08:55:48.522  INFO 21272 --- [background-preinit] o.h.validator.internal.util.Version      : HV000001: Hibernate Validator 8.0.1.Final
+2024-07-24 08:55:48.568  INFO 21272 --- [           main] com.reservoir.ReservoirApplication       : Starting ReservoirApplication using Java 21.0.1 with PID 21272 (C:\Users\zyh16\Desktop\Min\target\classes started by zyh16 in C:\Users\zyh16\Desktop\Min)
+2024-07-24 08:55:48.569  INFO 21272 --- [           main] com.reservoir.ReservoirApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-07-24 08:55:49.948  INFO 21272 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8999 (http)
+2024-07-24 08:55:49.957  INFO 21272 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-8999"]
+2024-07-24 08:55:49.958  INFO 21272 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-24 08:55:49.958  INFO 21272 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-07-24 08:55:50.008  INFO 21272 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-24 08:55:50.009  INFO 21272 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1394 ms
+2024-07-24 08:55:51.272  INFO 21272 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-8999"]
+2024-07-24 08:55:51.286  INFO 21272 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8999 (http) with context path '/'
+2024-07-24 08:55:51.295  INFO 21272 --- [           main] com.reservoir.ReservoirApplication       : Started ReservoirApplication in 3.241 seconds (process running for 3.858)
+2024-07-24 08:55:59.949  INFO 21272 --- [http-nio-8999-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-24 08:55:59.949  INFO 21272 --- [http-nio-8999-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-07-24 08:55:59.950  INFO 21272 --- [http-nio-8999-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-07-24 08:56:02.599  INFO 21272 --- [http-nio-8999-exec-10] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 262 ms
+2024-07-24 08:56:33.162  WARN 21272 --- [http-nio-8999-exec-1] com.zaxxer.hikari.HikariConfig           : HikariPool-1 - idleTimeout is close to or more than maxLifetime, disabling it.
+2024-07-24 08:56:33.163  INFO 21272 --- [http-nio-8999-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-07-24 08:56:34.662  INFO 21272 --- [http-nio-8999-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3c426f7b
+2024-07-24 08:56:34.664  INFO 21272 --- [http-nio-8999-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-07-24 08:56:34.816  INFO 21272 --- [http-nio-8999-exec-1] c.r.service.Impl.UserServiceImpl         : userinfo_exist? --> null
+2024-07-24 08:56:34.817  INFO 21272 --- [http-nio-8999-exec-1] c.r.service.Impl.UserServiceImpl         : insert_userinfo... --> User(id=null, username=qwm, password=e60360c6285d3d7766b1db6d0673cdb73a8f1f75854df3715430b2dd054a5169, email=123456@qq.com, createdAt=null, updatedAt=null)
+2024-07-24 08:57:00.116  INFO 21272 --- [http-nio-8999-exec-3] c.r.service.Impl.UserServiceImpl         : enter to login...
+2024-07-24 08:57:00.360  INFO 21272 --- [http-nio-8999-exec-3] c.r.service.Impl.UserServiceImpl         : user_exist? --> User(id=null, username=qwm, password=e60360c6285d3d7766b1db6d0673cdb73a8f1f75854df3715430b2dd054a5169, email=null, createdAt=null, updatedAt=null)
+2024-07-24 08:57:00.360  INFO 21272 --- [http-nio-8999-exec-3] c.r.service.Impl.UserServiceImpl         : begin....password
+2024-07-24 08:57:00.364 ERROR 21272 --- [http-nio-8999-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: Cannot invoke "java.lang.Long.toString()" because the return value of "com.reservoir.entity.User.getId()" is null] with root cause
+
+java.lang.NullPointerException: Cannot invoke "java.lang.Long.toString()" because the return value of "com.reservoir.entity.User.getId()" is null
+	at com.reservoir.service.Impl.UserServiceImpl.login(UserServiceImpl.java:123)
+	at com.reservoir.controller.UserController.login(UserController.java:39)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:66)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2024-07-24 08:58:30.791  INFO 21272 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
