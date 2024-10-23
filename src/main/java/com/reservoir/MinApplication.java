@@ -11,8 +11,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 public class ReservoirApplication {
 
-
-
     public static void main(String[] args) throws InterruptedException {
         SpringApplication.run(ReservoirApplication.class, args);
     }
