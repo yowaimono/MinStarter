@@ -9,10 +9,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 @EnableAsync
 @SpringBootApplication
-public class ReservoirApplication {
+public class MinApplication {
 
     public static void main(String[] args) throws InterruptedException {
-        SpringApplication.run(ReservoirApplication.class, args);
+        SpringApplication.run(MinApplication.class, args);
     }
 
 }

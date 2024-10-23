@@ -17,19 +17,29 @@ import java.util.List;
 public class CodeGenerator {
 
     private static final String BASE_PACKAGE = "com.reservoir";
-    private static final String ENTITY_PACKAGE = BASE_PACKAGE + ".entity";
-    private static final String MAPPER_PACKAGE = BASE_PACKAGE + ".gencode.mapper";
-    private static final String SERVICE_PACKAGE = BASE_PACKAGE + ".gencode.service";
-    private static final String SERVICE_IMPL_PACKAGE = BASE_PACKAGE + ".gencode.service.impl";
-    private static final String CONTROLLER_PACKAGE = BASE_PACKAGE + ".gencode.controller";
-    private static final String ENTITY_GEN_PACKAGE = BASE_PACKAGE + ".gencode.entity";
-    private static final String CORE_ENTITY_PACKAGE = BASE_PACKAGE + ".core.entity";
+    private static final String GEN_PKG = "admin";
+    private static final String ENTITY_PACKAGE = BASE_PACKAGE + ".entity." + GEN_PKG;
 
-    private static final String MAPPER_DIR = "src/main/java/" + BASE_PACKAGE.replace('.', '/') + "/gencode/mapper";
-    private static final String SERVICE_DIR = "src/main/java/" + BASE_PACKAGE.replace('.', '/') + "/gencode/service";
-    private static final String SERVICE_IMPL_DIR = "src/main/java/" + BASE_PACKAGE.replace('.', '/') + "/gencode/service/impl";
-    private static final String CONTROLLER_DIR = "src/main/java/" + BASE_PACKAGE.replace('.', '/') + "/gencode/controller";
-    private static final String ENTITY_DIR = "src/main/java/" + BASE_PACKAGE.replace('.', '/') + "/gencode/entity";
+    private static final String MAPPER_PACKAGE = BASE_PACKAGE + ".gencode."+ GEN_PKG +  ".mapper";
+    private static final String SERVICE_PACKAGE = BASE_PACKAGE + ".gencode."+ GEN_PKG +  ".service";
+    private static final String SERVICE_IMPL_PACKAGE = BASE_PACKAGE + ".gencode."+ GEN_PKG +  ".service.impl";
+    private static final String CONTROLLER_PACKAGE = BASE_PACKAGE + ".gencode."+ GEN_PKG +  ".controller";
+    private static final String ENTITY_GEN_PACKAGE = BASE_PACKAGE + ".gencode."+ GEN_PKG +  ".entity";
+    private static final String CORE_ENTITY_PACKAGE = BASE_PACKAGE + ".core."+ GEN_PKG +  ".entity";
+
+    private static final String MAPPER_DIR = "src/main/java/" + BASE_PACKAGE.replace('.', '/') + "/gencode/" + GEN_PKG+ "/mapper";
+    private static final String SERVICE_DIR = "src/main/java/" + BASE_PACKAGE.replace('.', '/') + "/gencode/" + GEN_PKG+ "/service";
+    private static final String SERVICE_IMPL_DIR = "src/main/java/" + BASE_PACKAGE.replace('.', '/') + "/gencode/" + GEN_PKG+ "/service/impl";
+    private static final String CONTROLLER_DIR = "src/main/java/" + BASE_PACKAGE.replace('.', '/') + "/gencode/" + GEN_PKG+ "/controller";
+    private static final String ENTITY_DIR = "src/main/java/" + BASE_PACKAGE.replace('.', '/') + "/gencode/" + GEN_PKG+ "/entity";
+
+    // 定义全局变量，包含常用的导入语句
+    private static final String COMMON_IMPORTS =
+            "import jakarta.annotation.Resource;\n" +
+                    "import io.swagger.v3.oas.annotations.Operation;\n" +
+                    "import com.reservoir.core.entity.Result;\n" +
+            "import java.time.LocalDateTime;" +
+            "import java.time.LocalDate;";
 
     public static void main(String[] args) {
         try {
@@ -112,10 +122,10 @@ public class CodeGenerator {
         StringBuilder content = new StringBuilder();
         String entityName = entityClass.getSimpleName();
         content.append("package ").append(SERVICE_PACKAGE).append(";\n\n");
+        content.append(COMMON_IMPORTS).append("\n");
         content.append("import ").append(entityClass.getName()).append(";\n");
         content.append("import com.baomidou.mybatisplus.extension.plugins.pagination.Page;\n");
         content.append("import java.util.List;\n\n");
-        content.append("import ").append(CORE_ENTITY_PACKAGE).append(".Result;\n");
         content.append("public interface ").append(serviceName).append(" {\n\n");
         content.append("    Result<?>").append(" getAll();\n");
         content.append("    ").append("Result<?>").append(" getById(Long id);\n");
@@ -138,12 +148,11 @@ public class CodeGenerator {
         StringBuilder content = new StringBuilder();
         String entityName = entityClass.getSimpleName();
         content.append("package ").append(SERVICE_IMPL_PACKAGE).append(";\n\n");
+        content.append(COMMON_IMPORTS).append("\n");
         content.append("import ").append(entityClass.getName()).append(";\n");
         content.append("import ").append(MAPPER_PACKAGE).append(".").append(mapperName).append(";\n");
         content.append("import ").append(SERVICE_PACKAGE).append(".").append(serviceName).append(";\n");
         content.append("import org.springframework.stereotype.Service;\n");
-        content.append("import jakarta.annotation.Resource;\n");
-        content.append("import ").append(CORE_ENTITY_PACKAGE).append(".Result;\n");
         content.append("import java.util.List;\n");
         content.append("import org.slf4j.Logger;\n");
         content.append("import org.slf4j.LoggerFactory;\n");
@@ -257,13 +266,11 @@ public class CodeGenerator {
         StringBuilder content = new StringBuilder();
         String entityName = entityClass.getSimpleName();
         content.append("package ").append(CONTROLLER_PACKAGE).append(";\n\n");
+        content.append(COMMON_IMPORTS).append("\n");
         content.append("import ").append(entityClass.getName()).append(";\n");
         content.append("import ").append(SERVICE_PACKAGE).append(".").append(serviceName).append(";\n");
         content.append("import org.springframework.web.bind.annotation.*;\n");
         content.append("import io.swagger.v3.oas.annotations.tags.Tag;\n");
-        content.append("import jakarta.annotation.Resource;\n");
-        content.append("import io.swagger.v3.oas.annotations.Operation;\n");
-        content.append("import ").append(CORE_ENTITY_PACKAGE).append(".Result;\n");
         content.append("import java.util.List;\n\n");
         content.append("@RestController\n");
         content.append("@RequestMapping(\"/").append(entityName.toLowerCase()).append("\")\n");
@@ -378,6 +385,21 @@ public class CodeGenerator {
         Class<?> clazz = Class.forName(className);
         StringBuilder methods = new StringBuilder();
 
+        // 导入常用的工具类
+        methods.append("import java.time.LocalDate;\n");
+        methods.append("import java.time.LocalDateTime;\n");
+        methods.append("import java.util.List;\n");
+        methods.append("import java.util.ArrayList;\n");
+        methods.append("import java.io.File;\n");
+        methods.append("import java.io.IOException;\n");
+        methods.append("import java.nio.file.Files;\n");
+        methods.append("import java.nio.file.Path;\n");
+        methods.append("import java.nio.file.Paths;\n");
+        methods.append("import java.lang.reflect.Field;\n");
+        methods.append("import java.net.URL;\n");
+        methods.append("import java.util.Enumeration;\n");
+        methods.append("\n");
+
         for (java.lang.reflect.Field field : clazz.getDeclaredFields()) {
             String fieldName = field.getName();
             String fieldType = field.getType().getSimpleName();
@@ -397,7 +419,7 @@ public class CodeGenerator {
      * @param camelCaseString 驼峰命名的字符串
      * @return 下划线命名的字符串
      */
-     private static String Camelconvert(String camelCaseString) {
+    private static String Camelconvert(String camelCaseString) {
         if (camelCaseString == null || camelCaseString.isEmpty()) {
             return camelCaseString;
         }

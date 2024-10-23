@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
-@MapperScan(basePackages = {"com.reservoir.mapper"})
+@MapperScan(basePackages = {"com.reservoir.mapper","com.reservoir.gencode.*.mapper"})
 @EnableTransactionManagement
 @Configuration
 public class MybatisPlusConfig {

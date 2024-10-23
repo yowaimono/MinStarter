@@ -490,3 +490,9 @@ java.io.FileNotFoundException: .\logs\min\min_aof.log (系统找不到指定的�
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
 
+2024-10-23 14:54:55.856  INFO 23356 --- [background-preinit] o.h.validator.internal.util.Version      : HV000001: Hibernate Validator 8.0.1.Final
+2024-10-23 14:54:55.915  INFO 23356 --- [           main] com.reservoir.MinApplication             : Starting MinApplication using Java 21.0.1 with PID 23356 (C:\Users\zyh16\Desktop\MinStartr\target\classes started by zyh16 in C:\Users\zyh16\Desktop\MinStartr)
+2024-10-23 14:54:55.917  INFO 23356 --- [           main] com.reservoir.MinApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-10-23 14:54:57.271  INFO 23356 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-10-23 14:54:57.275  INFO 23356 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-10-23 14:54:57.333  INFO 23356 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 34 ms. Found 0 Redis repository interfaces.

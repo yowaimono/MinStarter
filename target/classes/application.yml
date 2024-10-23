@@ -1,0 +1,90 @@
+debug: false
+
+
+spring:
+  application:
+    name: app
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 200MB
+
+  datasource:
+    username:
+    password: ""
+    url: jdbc:mysql:/xxxxxxx:3306/xxxxxxx?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      connection-timeout: 10000
+      validation-timeout: 3000
+      idle-timeout: 60000
+      login-timeout: 5
+      max-lifetime: 60000
+      maximum-pool-size: 10
+      minimum-idle: 5
+      read-only: false
+  thymeleaf:
+    suffix: .html
+  banner:
+    charset: UTF-8
+    location: classpath:banner.txt
+  web:
+    resources:
+      static-locations: classpath:/static/
+  data:
+    redis:
+      host: xxxxxxxx        # Redis服务器主机名，默认为localhost
+      port: 6379             # Redis服务器端口，默认为6379s
+      password: "xxxx"             # Redis服务器密码（如果有的话）
+      database: 0            # Redis数据库索引，默认为0
+      lettuce:
+        pool:
+          max-active: 8  # 连接池最大连接数（使用负值表示没有限制） 默认 8
+          max-wait: -1   # 连接池最大阻塞等待时间（使用负值表示没有限制） 默认 -1
+          max-idle: 8    # 连接池中的最大空闲连接 默认 8
+          min-idle: 0    # 连接池中的最小空闲连接 默认 0
+#  mail:
+#    host: smtp.163.com
+#    port: 465
+#    username: "ixxxxxxxx"
+#    password: "xxxxxx"
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+#    protocol: smtps
+
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+
+logging:
+  level:
+    root: INFO
+  config:
+    classpath:logback-spring.xml
+
+
+jwt:
+  secret: xxxx
+  expiration: xxxx
+
+ffmpeg:
+  path:
+    classpath:bin/
+
+
+server:
+  port: 8090
+#  servlet:
+#    context-path: /api
+
+
+min:
+  config:
+    http:
+      debug: true

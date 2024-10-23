@@ -1,9 +1,11 @@
 package com.reservoir.core.entity;
 
 public enum RoleEnum {
-    ADMIN("ADMIN"),
-    USER("USER"),
-    GUEST("GUEST");
+    ADMIN("ADMIN"), // 超级管理员
+    OPERATOR("OPERATOR"), // 操作员
+    USER("USER"),   // 普通用户
+    GUEST("GUEST");  // 游客
+
 
     private final String role;
 
